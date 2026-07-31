@@ -74,4 +74,4 @@ This demonstrates using a single volume to store everything volume-mounted in th
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/DopplerHQ/devcontainer-features/blob/main/src/volume-permissions/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
