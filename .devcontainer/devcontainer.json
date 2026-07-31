@@ -1,15 +1,27 @@
 {
-    "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18",
+    // docker-in-docker only works with the lite image
+    "image": "us-central1-docker.pkg.dev/gar-prod-73b1cdf/devtools/devcontainer-lite:latest",
     "customizations": {
         "vscode": {
+            "settings": {
+                "json.schemas": [
+                    {
+                        "fileMatch": [
+                            "*/devcontainer-feature.json"
+                        ],
+                        "url": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainerFeature.schema.json"
+                    }
+                ]
+            },
             "extensions": [
                 "mads-hartmann.bash-ide-vscode"
             ]
         }
     },
     "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+        "ghcr.io/devcontainers/features/docker-in-docker:4": {
+            "moby": false
+        }
     },
-    "remoteUser": "node",
-    "postCreateCommand": "npm install -g @devcontainers/cli"
+    "updateContentCommand": "npm install -g @devcontainers/cli"
 }
