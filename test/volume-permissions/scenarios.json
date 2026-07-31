@@ -1,0 +1,68 @@
+{
+    "basic_usage": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "remoteUser": "vscode",
+        "updateRemoteUserUID": false,
+        "features": {
+            "volume-permissions": {
+                "basePath": "${containerWorkspaceFolder}",
+                "paths": ".pnpm-store,node_modules"
+            }
+        },
+        "mounts": [
+            {
+                "type": "volume",
+                "source": "vp-test-${localWorkspaceFolderBasename}-pnpm-store",
+                "target": "${containerWorkspaceFolder}/.pnpm-store"
+            },
+            {
+                "type": "volume",
+                "source": "vp-test-${localWorkspaceFolderBasename}-node-modules",
+                "target": "${containerWorkspaceFolder}/node_modules"
+            }
+        ]
+    },
+    "volume_subpath": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "remoteUser": "vscode",
+        "updateRemoteUserUID": false,
+        "features": {
+            "volume-permissions": {
+                "basePath": "/shared-volume",
+                "paths": ".pnpm-store,node_modules"
+            }
+        },
+        "mounts": [
+            "type=volume,source=vp-test-${localWorkspaceFolderBasename}-shared,target=/shared-volume",
+            "type=volume,source=vp-test-${localWorkspaceFolderBasename}-shared,target=${containerWorkspaceFolder}/.pnpm-store,volume-subpath=./.pnpm-store",
+            "type=volume,source=vp-test-${localWorkspaceFolderBasename}-shared,target=${containerWorkspaceFolder}/node_modules,volume-subpath=./node_modules"
+        ]
+    },
+    "absolute_paths_without_base_path": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "remoteUser": "vscode",
+        "updateRemoteUserUID": false,
+        "features": {
+            "volume-permissions": {
+                "paths": "/opt/cache-one,/opt/nested/cache-two"
+            }
+        },
+        "mounts": [
+            "type=volume,source=vp-test-${localWorkspaceFolderBasename}-cache-one,target=/opt/cache-one",
+            "type=volume,source=vp-test-${localWorkspaceFolderBasename}-cache-two,target=/opt/nested/cache-two"
+        ]
+    },
+    "root_remote_user": {
+        "image": "ubuntu:latest",
+        "features": {
+            "volume-permissions": {
+                "basePath": "/root/caches",
+                "paths": "one,two"
+            }
+        },
+        "mounts": [
+            "type=volume,source=vp-test-${localWorkspaceFolderBasename}-root-one,target=/root/caches/one",
+            "type=volume,source=vp-test-${localWorkspaceFolderBasename}-root-two,target=/root/caches/two"
+        ]
+    }
+}
