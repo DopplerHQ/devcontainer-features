@@ -1,0 +1,20 @@
+{
+  "id": "volume-permissions",
+  "version": "1.0.0",
+  "name": "Prepare Volume Permissions",
+  "description": "Creates directories and takes ownership of them as the remote user. Useful for prepping volume mounts in environments where the hosts's UID does not match the remote user's UID.",
+  "options": {
+    "basePath": {
+      "type": "string",
+      "default": "",
+      "description": "Base path to prepend to every `paths` value.",
+      "proposals": ["${containerWorkspaceFolder}"]
+    },
+    "paths": {
+      "type": "string",
+      "default": "",
+      "description": "Comma-separated list of paths to chown as the remote user.",
+      "proposals": ["${containerWorkspaceFolder}/.pnpm-store,${containerWorkspaceFolder}/node_modules"]
+    }
+  }
+}

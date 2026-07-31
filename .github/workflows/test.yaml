@@ -14,6 +14,7 @@ jobs:
       matrix:
         features:
           - doppler-cli
+          - volume-permissions
         baseImage:
           - debian:latest
           - ubuntu:latest
@@ -37,6 +38,7 @@ jobs:
       matrix:
         features:
           - doppler-cli
+          - volume-permissions
     steps:
       - uses: actions/checkout@v4
 
